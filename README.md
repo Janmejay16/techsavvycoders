@@ -105,3 +105,9 @@
 ### Additional Features
 * Click on skills in someone's profile leads to profiles having similar skills
 * Click on tags in someone's Project leads to profilesProjects having similar tags
+* "Requirement Satisfied" - for individual projects which determines need of collaborators
+
+
+#### Mentor Suggestions
+* User option to allow notifications in mail
+* Attractive UI/UX
