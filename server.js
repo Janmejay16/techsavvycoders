@@ -4,6 +4,7 @@ const User = require("./models/User");
 const db = require('./db')
 const bodyParser = require('body-parser')
 // const path = require("path");
+const bcrypt = require('bcrypt')
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -25,11 +26,15 @@ app.post('/register',(req,res) => {
             res.send(message)
         }
         else {
-            var newUser = User(req.body)
-            newUser.save((err,data) => {
-                if (err) res.send("Something Went Wrong!")
-                else res.send("User added")
-            })
+            data = req.body
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+                data['password'] = hash
+                var newUser = User(data)
+                newUser.save((err,data) => {
+                    if (err) res.send("Something Went Wrong!")
+                    else res.send("User added")
+                })
+            });
         }
     })
 })
@@ -37,18 +42,20 @@ app.post('/register',(req,res) => {
 app.post('/login', (req,res) => {
     User.findOne({'email': req.body.email}, (err,user) => {
         if (user) {
-            if(user.password == req.body.password) {
-                res.json({
-                    success: true,
-                    message: "Logged In"
-                })
-            }
-            else {
-                res.json({
-                    success: false,
-                    message: "Incorrect Password!"
-                })
-            }
+            bcrypt.compare(req.body.password, user.password, (err,data) => {
+                if (data) {
+                    res.json({
+                        success: true,
+                        message: "Logged In"
+                    })
+                }
+                else {
+                    res.json({
+                        success: false,
+                        message: "Incorrect Password!"
+                    })
+                }
+            })
         }
         else {
             res.send("User Not Found!")
