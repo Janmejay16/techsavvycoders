@@ -1,52 +1,52 @@
-# Features
+# Overview
 
 * User
-    ** User Registration/Login
-    ** User Profile [Name, email, mobile, skills, role, profile pic, education, experience, Change Password]
-    ** User dashboard [Profile, Projects {Saved {Completed, Ongoing}, My Projects, Applications} , Explore, Notifications, Logout]
-        *** Dashboard Home : Epxlore
-    ** Approve/Send requests to another users
+    * User Registration/Login
+    * User Profile [Name, email, mobile, skills, role, profile pic, education, experience, Change Password]
+    * User dashboard [Profile, Projects {Saved {Completed, Ongoing}, My Projects, Applications} , Explore, Notifications, Logout]
+        * Dashboard Home : Epxlore
+    * Approve/Send requests to another users
 
 * Registration :
-    ** Personal Details : name, mobile, email, password, confirmPassword
-    ** Education Details {list} : institute name, year, course
-    ** Experience Details {list} : Company, role, duration, work
-    ** Skills {list}
-    ** Projects {list} : Name, description, URL, application/skills used, tags (domain), visibility (Public/Private) , status                    [1]
+    * Personal Details : name, mobile, email, password, confirmPassword
+    * Education Details {list} : institute name, year, course
+    * Experience Details {list} : Company, role, duration, work
+    * Skills {list}
+    * Projects {list} : Name, description, URL, application/skills used, tags (domain), visibility (Public/Private) , status                    [1]
     
     [EMAIL VERIFICATION REQUIRED before login]
 
 * Login :
-    ** Email, password ? redirect to dashboard : error
-    ** Forgot Password -> { Send reset pwd link to email }
+    * Email, password ? redirect to dashboard : error
+    * Forgot Password -> { Send reset pwd link to email }
 
 * Projects : 
-    ** Add Project
-    ** Edit Project [Add/Edit/Delete Collaborators]
-    ** Delete Project
+    * Add Project
+    * Edit Project [Add/Edit/Delete Collaborators]
+    * Delete Project
 
 * Explore : [Recent Projects ,Show saved projects]
-    ** Search (Name,Skills, Tags, Type (Project, Freelancing))
-        *** Filter : Ongoing, completed
-            **** Ongoing Project : Save, Apply
-            **** Completed Project : Comment, Save
-    ** Post a Project -> { [1] }
-    ** Search for a project -> {Recent Projects, Filters in side for skills}
-    ** Search for a collaborator -> {Filter : Skills}
-        *** Request For collaboration : Select Project -> Send project,username {Approve/Decline by other user}
+    * Search (Name,Skills, Tags, Type (Project, Freelancing))
+        * Filter : Ongoing, completed
+            * Ongoing Project : Save, Apply
+            * Completed Project : Comment, Save
+    * Post a Project -> { [1] }
+    * Search for a project -> {Recent Projects, Filters in side for skills}
+    * Search for a collaborator -> {Filter : Skills}
+        * Request For collaboration : Select Project -> Send project,username {Approve/Decline by other user}
 
 ## Frontend Pages :
 * Forms : Registration, Login, Add Project, Edit Profile/Project/Collaborators
 * Landing Pages - Home, About Us, Contact, Team, Navbar [Home, About Us, Contact, Team, Register, Login], Footer
 * Dashboard : 
-    ** Profile
-    ** Projects
-    ** Explore [DEFAULT]
-    ** Notifications
+    * Profile
+    * Projects
+    * Explore [DEFAULT]
+    * Notifications
 
 * Individual Sections : 
-    ** Profile [Name, Domain, Educational Background, Experience, Projects {Display 3, VIEW MORE}, Skills {Tags Display}, Button {Invite as Collaborator}]
-    ** Project [Owner Name, Name, Desc, URL, Skills, Tags, Images (Optional), Button {Request for Collaboration}]
+    * Profile [Name, Domain, Educational Background, Experience, Projects {Display 3, VIEW MORE}, Skills {Tags Display}, Button {Invite as Collaborator}]
+    * Project [Owner Name, Name, Desc, URL, Skills, Tags, Images (Optional), Button {Request for Collaboration}]
 
 ## Backend Features :
 * Register, Edit/Delete User
@@ -66,9 +66,40 @@
 
 ## Database Tables :
 * User [user_id]
+    * Name
+    * email
+    * mobile
+    * password
+    * social links [array]
+        * app name
+        * profile url
+    * education [array]
+        * institute name
+        * year of graduation
+        * qualification
+        * major
+    * experience [array]
+        * company name
+        * role
+        * duration
+        * describe ur work
+    * skills [array]
+
 * Projects [project_id,user_id]
+    * Owner name
+    * Project name
+    * desc
+    * url
+    * tags
+    * collaborator
+    * images
+
 * Collaborators [collab_id,user_id,project-id]
-* Notifications [desc,user_id,project_id,status]
+    * role
+
+* Notifications [user_id,project_id]
+    * desc
+    * status
 
 
 ### Additional Features
