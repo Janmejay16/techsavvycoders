@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Route, Redirect } from 'react-router-dom';
-import SignUpIn from './SignUpIn'
-import Footer from './Footer';
+import Login from './Login'
 import Navbar from './Navbar';
 import {useState} from 'react'
 import axios from 'axios'
@@ -76,10 +75,9 @@ const Notf = styled.div`
 
 const Dashboard = (props) => {
     
-    const {isLoggedIn, setLoggedIn, currentUser, setCurrentUser, role, setRole} = props
-    const [notify,setNotify] = useState(false)
-    const [notifications, setNotifications] = useState(null)
-    const images = ["rc","license","insurance","vehicleImage"]
+    const {isLoggedIn, setLoggedIn, currentUser, setCurrentUser} = props
+    // const [notify,setNotify] = useState(false)
+    // const [notifications, setNotifications] = useState(null)
     
     const logout = (e) => {
         setLoggedIn(false)
@@ -89,108 +87,67 @@ const Dashboard = (props) => {
         alert('Logged Out!')
     }
 
-    const fetchNotifications = () => {
-        role=="user" ? 
-        (axios.get('/notifications/'+currentUser.id)
-        .then(res => {
-            console.log(res.data)
-            setNotifications(res.data)
-            setNotify(true)
-        }))
-        :
-        (axios.get('/enquiries/'+currentUser.id)
-        .then(res => {
-            console.log(res.data)
-            setNotifications(res.data)
-            setNotify(true)
-        }))
-    }
+    // const fetchNotifications = () => {
+    //     role=="user" ? 
+    //     (axios.get('/notifications/'+currentUser.id)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         setNotifications(res.data)
+    //         setNotify(true)
+    //     }))
+    //     :
+    //     (axios.get('/enquiries/'+currentUser.id)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         setNotifications(res.data)
+    //         setNotify(true)
+    //     }))
+    // }
 
-    const closeNotifications = () => {
-        setNotify(false)
-        setNotifications(null)
-    }
+    // const closeNotifications = () => {
+    //     setNotify(false)
+    //     setNotifications(null)
+    // }
 
-    const approve = () => {
-        var notification = {
-            "user_id": notifications.user_id,
-            "status": "approved",
-            "enquiry_id": notifications.enquiry_id
-        }
-        axios.post('/notifications/', notification)
-        .then(res => {
-            if(res.data.success == true) {
-                alert('Request Approved')
-                setNotify(false)
-                setNotifications(null)
-            }
-        })
-    }
+    // const approve = () => {
+    //     var notification = {
+    //         "user_id": notifications.user_id,
+    //         "status": "approved",
+    //         "enquiry_id": notifications.enquiry_id
+    //     }
+    //     axios.post('/notifications/', notification)
+    //     .then(res => {
+    //         if(res.data.success == true) {
+    //             alert('Request Approved')
+    //             setNotify(false)
+    //             setNotifications(null)
+    //         }
+    //     })
+    // }
 
-    const decline = () => {
-        var notification = {
-            "user_id": notifications.user_id,
-            "status": "declined",
-            "enquiry_id": notifications.enquiry_id
-        }
-        axios.post('/notifications/', notification)
-        .then(res => {
-            if(res.data.success == true) {
-                alert('Request Declined')
-                setNotify(false)
-                setNotifications(null)
-            }
-        })
-    }
+    // const decline = () => {
+    //     var notification = {
+    //         "user_id": notifications.user_id,
+    //         "status": "declined",
+    //         "enquiry_id": notifications.enquiry_id
+    //     }
+    //     axios.post('/notifications/', notification)
+    //     .then(res => {
+    //         if(res.data.success == true) {
+    //             alert('Request Declined')
+    //             setNotify(false)
+    //             setNotifications(null)
+    //         }
+    //     })
+    // }
 
     if(isLoggedIn) {
         return (
-            <div>
-                <Navbar
-                    isLoggedIn={isLoggedIn}
-                    currentUser={currentUser}
-                    setLoggedIn={setLoggedIn}
-                    setCurrentUser={setCurrentUser}
-                />
-            <Profile>
-                {currentUser ?
-                    (Object.entries(currentUser).map(([key,value]) => {
-                        if (key=="id" || key=="password") {
-                            return ""
-                        }
-                        if (images.includes(key)) {
-
-                            return <div className="image">
-                                <h4>{key}</h4>
-                                <img src={`/uploads/${value}.png`} alt={key} />
-                                </div>
-                        }
-
-                        else {
-                            return <h2><span>{key} : </span>{value}</h2>
-                        }
-                    })) : ""
-                }
-                {(notifications && role=="user") ? 
-                    (<Notf className="notify">
-                        <button className="button" onClick={closeNotifications}>X</button>
-                        <h5>Your request for {notifications.modelName} on Date : {notifications.requiredDate.slice(0,10)} has been {notifications.message}</h5>
-                    </Notf>)
-                    : ((notifications && role=="owner") ? (<Notf className="notify">
-                    <button className="button" onClick={closeNotifications}>X</button>
-                    <h5>You have received a request for {notifications.modelName} on Date : {notifications.requiredDate.slice(0,10)} till Date : {notifications.returnDate.slice(0,10)}</h5>
-                    <button onClick={approve}>Approve</button>
-                    <button onClick={decline}>Decline</button>
-                </Notf>) :"")
-                }
-                <button onClick={fetchNotifications}>Notifications</button>
-                <button onClick={logout}>Logout</button>
-            </Profile>
-            </div>
+            <Redirect to="/explore" />
         )
     }
     else {
-        return <SignUpIn role={role} setRole={setRole} isLoggedIn={isLoggedIn} currentUser={currentUser} setLoggedIn={setLoggedIn} setCurrentUser={setCurrentUser} />
+        return <Login isLoggedIn={isLoggedIn} currentUser={currentUser} setLoggedIn={setLoggedIn} setCurrentUser={setCurrentUser} />
     }
 }
 
