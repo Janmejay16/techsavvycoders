@@ -25,53 +25,52 @@ User
 */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let User = new Schema(
-  {
+let User = new Schema({
     name: {
-      type: String,
-      default: "" 
+        type: String,
+        default: ""
     },
     email: {
-      type: String,
-      default: ""
+        type: String,
+        default: ""
     },
     mobile: {
-      type: String,
-      default: "" 
+        type: String,
+        default: ""
     },
     password: {
         type: String,
-        default: "" 
+        default: ""
     },
     image: {
         data: Buffer,
-        contentType:String,
-        default: "" 
+        contentType: String,
+        default: ""
     },
     socialLinks: [{
         app: String,
         url: String,
-        default: "" 
+        default: ""
     }],
     education: [{
         instituteName: String,
         major: String,
         qualification: String,
         graduationYear: Number,
-        default: "" 
+        default: ""
     }],
     experience: [{
         company: String,
         role: String,
         work: String,
         duration: Number,
-        default: "" 
+        default: ""
     }],
     skills: [{
-        type:String,
-        default: "" 
+        type: String,
+        default: ""
     }],
-    emailNotifications : {
+    emailNotifications: {
         type: Boolean,
         default: false
     },
@@ -79,7 +78,7 @@ let User = new Schema(
         type: Boolean,
         default: false
     }
-  },
-  { collection: "User" }
+},
+    { collection: "User" }
 );
-module.exports = mongoose.model("User",User);
+module.exports = mongoose.model("User", User);
