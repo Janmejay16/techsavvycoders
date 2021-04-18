@@ -5,6 +5,7 @@ import ls from 'local-storage'
 const Dash = styled.nav`
     background: rgba(0,0,0,0.9);
     float: left;
+    position: fixed;
     width: 10vw;
     @media screen and (max-width: 768px) {
         width: 20vw;

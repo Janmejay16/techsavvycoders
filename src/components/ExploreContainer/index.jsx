@@ -1,9 +1,7 @@
-import {Redirect} from 'react-router-dom'
-import ls from 'local-storage'
 import React from "react";
 import { FormControlLabel, FormGroup, Checkbox, withStyles } from "@material-ui/core";
-import Profile from "./ProfilePage/index";
-import Project from "./Project/index";
+import Profile from "../ProfilePage/index";
+import Project from "../Project/index";
 import {
 	Wrapper,
 	LeftContainer,
@@ -11,10 +9,9 @@ import {
 	Container,
 	CategoryHeading,
 	Heading,
-} from "./ExploreContainer/ExploreContainerComponents.jsx";
+} from "./ExploreContainerComponents";
 
-
-const Explore = (props) => {
+const ExploreContainer = () => {
 	const GreenCheckbox = withStyles({
 		root: {
 			color: "#25ab98",
@@ -24,8 +21,7 @@ const Explore = (props) => {
 		},
 		checked: {},
 	})((props) => <Checkbox color="default" {...props} />);
-    const {isLoggedIn, setLoggedIn, currentUser, setCurrentUser} = props
-    if(ls.get('loggedIn')==true) {
+
 	return (
 		<div>
 			<Wrapper>
@@ -80,10 +76,7 @@ const Explore = (props) => {
 				</RightContainer>
 			</Wrapper>
 		</div>
-	)
-    }
-    else {
-        return <Redirect to="/" />
-    }
-}
-export default Explore
+	);
+};
+
+export default ExploreContainer;

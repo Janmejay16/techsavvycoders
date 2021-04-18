@@ -7,6 +7,7 @@ import Profile from './components/Profile'
 import Explore from './components/Explore'
 import Register from './components/Register'
 import Login from './components/Login'
+import Vatsal from './components/Vatsal'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <Router>
       <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <div style={{marginLeft: "20vw"}}>
       <Route
         exact path="/"
         component={() => <Home 
@@ -52,6 +54,8 @@ const App = () => {
         component={() => <Login
           isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
       />
+      <Router exact path="vatsal" component={Vatsal} />
+    </div>
     </Router>
   )
 }

@@ -17,7 +17,7 @@ const Register = props => {
     const handleSubmit = () => {
         console.log(details)
         if(password == details.password) {
-            axios.post('http://localhost:5000/register',details)
+            axios.post('/register',details)
             .then(res => {
                 alert(res.data.message)
                 if (res.data.success == true) {
@@ -63,7 +63,7 @@ const Register = props => {
                         placeholder="Enter Your Email"
                     />
                     {/* UserName */}
-                    {/* <TextField
+                    <TextField
                         name="username"
                         onChange={handleInput}
                         style={{width: "40%",margin: "1vw 5%"}}
@@ -73,7 +73,7 @@ const Register = props => {
                         defaultValue=""
                         size="small"
                         placeholder="Enter Your Username"
-                    /> */}
+                    />
                     {/* Mobile */}
                     <TextField
                         name="mobile"

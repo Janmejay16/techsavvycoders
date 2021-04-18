@@ -16,7 +16,7 @@ const Login = (props) => {
     }
     const handleSubmit = () => {
         console.log(credentials)
-        axios.post('http://localhost:5000/login', credentials).then(res => {
+        axios.post('/login', credentials).then(res => {
             if(res.data.success==true) {
                 alert(res.data.message)
                 setLoggedIn(true)
