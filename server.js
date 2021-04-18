@@ -12,14 +12,14 @@ const bcrypt = require('bcrypt')
 var crypto = require("crypto");
 var nodemailer = require('nodemailer')
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-baseUrl = "http://localhost:5000"
+baseUrl = "https://projecez.herokuapp.com"
 
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
